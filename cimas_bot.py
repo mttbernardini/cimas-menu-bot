@@ -29,19 +29,21 @@ def get_menus():
 		menus[day] = day_menu
 	return menus
 
+def str_portata(menu, portata):
+	return ("*%s:*\n" % portata) + "".join(" - %s\n" % pasto for pasto in menu[portata])
+
 def todays_menu_to_md(menus):
 	day = date(2019, 3, 18)
 	menu = menus[day]
 	
-	msg = "🍴 Il menu di oggi _(%s)_\n" % (day.strftime("%A %d %B"))
-	msg += "-------------------------------------\n"
+	msg = "🍴 Il menu di oggi 🍴\n"
+	msg += "-----------------------------------\n"
 	
-	for p in menu:
-		msg += "*%s:*\n" % p
-		for pasto in menu[p]:
-			msg += " - %s\n" % pasto
+	msg += str_portata(menu, "Primi")
+	msg += str_portata(menu, "Secondi")
+	msg += str_portata(menu, "Contorni")	
 		
-	msg += "-------------------------------------\n"
+	msg += "-----------------------------------\n"
 	msg += "🍞 _Il pane è compreso nel pasto._\n"
 	msg += "🥤 _Le bevande sono disponibili nei distributori all'interno della sala e sono libere._\n"
 	msg += "🍊 _In alternativa alla frutta: yogurt, succhi di frutta o dessert._\n"
