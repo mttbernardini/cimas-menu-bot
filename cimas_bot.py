@@ -3,24 +3,21 @@
 
 # Copyright (c) 2019 Gianmaria Del Monte
 
-import telepot
-import menus
+import telepot, locale, menus, calendar
 from datetime import datetime
 
 TOKEN='633120718:AAGPAeiYo7xWwAdM9lGeG0GotmGlzJXQ8QQ'
 CHANNEL_ID = -1001186126012
 
-DEFAULT_MSG = "Il menù di oggi non è disponibile"
-
-weeks = ["Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato", "Domenica"]
-months = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"]
+DEFAULT_MSG = "Il menu di oggi non è disponibile"
 
 def get_today_menu():
-	now = datetime(2019, 3, 18).date()
+	locale.setlocale(locale.LC_TIME, ("it_IT", "UTF-8"))
+	now = datetime.now().date()
 	
 	try:
 		menu = menus.getMenus()[now]
-		msg = "🍴 Il menu di oggi (%s %d %s)\n" % (weeks[now.weekday()], now.day, months[now.month-1])
+		msg = "🍴 Il menu di oggi (%s %d %s)\n" % (calendar.day_name[now.weekday()], now.day, calendar.month_name[now.month])
 		msg += "-------------------------------------\n"
 		
 		for p in menu:
