@@ -4,14 +4,14 @@
 # Copyright (c) 2019 Matteo Bernardini
 
 from apscheduler.schedulers.blocking import BlockingScheduler
-from os import environ
+from sys import argv
 import cimas_bot
 
 sched = BlockingScheduler()
 
 @sched.scheduled_job('cron', day_of_week='mon-fri', hour=12)
 def scheduled_job():
-    cimas_bot.main(environ["TG_TOKEN"])
+    cimas_bot.main()
 
 print("scheduler started")
 sched.start()

@@ -5,13 +5,14 @@
 # Copyright (c) 2019 Gianmaria Del Monte
 
 import telepot, requests, locale, lxml.html
-from sys import argv
+from os import environ
 from datetime import datetime, date
 
 locale.setlocale(locale.LC_TIME, ("it_IT", "UTF-8"))
 
 MENU_URL = "http://www.cimasristorazione.com/menu-mense/universita-roma-3/"
 CHANNEL_ID = -1001186126012
+TOKEN = environ["TG_TOKEN"]
 
 
 def get_menus():
@@ -47,14 +48,15 @@ def todays_menu_to_md(menus):
 
 	return msg
 
-def send_msg(msg, token):
-	bot = telepot.Bot(token)
+def send_msg(msg):
+	bot = telepot.Bot(TOKEN)
 	bot.sendMessage(CHANNEL_ID, msg, parse_mode="Markdown")
 
-def main(token=None):
+def main():
 	menus  = get_menus()
 	msg    = todays_menu_to_md(menus)
-	send_msg(msg, token)
+	send_msg(msg)
 
 if __name__ == "__main__":
-	main(argv[1])
+	print("forced run as standalone process")
+	main()
