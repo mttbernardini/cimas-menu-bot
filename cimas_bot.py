@@ -11,7 +11,7 @@ from datetime import datetime, date
 locale.setlocale(locale.LC_TIME, ("it_IT", "UTF-8"))
 
 MENU_URL = "http://www.cimasristorazione.com/menu-mense/universita-roma-3/"
-CHANNEL_ID = -1001186126012
+CHANNEL_ID = -1001380819702
 TOKEN = environ["TG_TOKEN"]
 
 
@@ -33,7 +33,7 @@ def str_portata(menu, portata):
 	return ("*%s:*\n" % portata) + "".join(" - %s\n" % pasto for pasto in menu[portata])
 
 def todays_menu_to_md(menus):
-	day = date(2019, 3, 18)
+	day = date.today()
 	menu = menus[day]
 	
 	msg = "🍴 Il menu di oggi 🍴\n"
