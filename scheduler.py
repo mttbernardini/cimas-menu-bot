@@ -9,9 +9,9 @@ import cimas_bot
 
 sched = BlockingScheduler()
 
-#@sched.scheduled_job('cron', day_of_week='mon-fri', hour=12)
-@sched.scheduled_job('cron', day_of_week='mon-sun', hour=22, minute=32)
+@sched.scheduled_job('cron', day_of_week='mon-fri', hour=11, minute=50)
 def scheduled_job():
+    print("running scheduled job")
     cimas_bot.main()
 
 print("scheduler started")
