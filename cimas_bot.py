@@ -36,7 +36,7 @@ def todays_menu_to_md(menus):
 	day = date.today()
 	menu = menus[day]
 	
-	msg = "🍴 Il menu di oggi 🍴\n"
+	msg = "🍴 *IL MENU DI OGGI* 🍴\n"
 	msg += "-----------------------------------\n"
 	
 	msg += str_portata(menu, "Primi")
